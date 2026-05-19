@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charm AI — Your Flirt Era Starts Now</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{--plum:#1A0A2E;--pink:#FF2D6B;--pink-light:#ff6b9d;--bg:#0d0a1a;--bg2:#120d22;--card:#1a1428;--text:#ffffff;--muted:#a090c0;--border:rgba(255,45,107,0.15);}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+    a{text-decoration:none;color:inherit;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(13,10,26,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);}
+    .nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15em;letter-spacing:-0.3px;}
+    .nav-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--plum),var(--pink));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+    .nav-links{display:flex;gap:32px;font-size:0.92em;color:var(--muted);}
+    .nav-links a:hover{color:#fff;}
+
+    /* HERO */
+    .hero{min-height:100vh;padding:100px 5% 80px;display:flex;align-items:center;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;top:-200px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(255,45,107,0.18) 0%,transparent 70%);pointer-events:none;}
+    .hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(100,20,180,0.15) 0%,transparent 70%);pointer-events:none;}
+    .hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+    .hero-text h1{font-size:clamp(2.4em,5vw,3.6em);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:20px;}
+    .hero-text h1 .accent{color:var(--pink);}
+    .hero-text p{font-size:1.1em;color:var(--muted);margin-bottom:36px;max-width:440px;line-height:1.7;}
+    .hero-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+    .btn-appstore{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#000;padding:13px 22px;border-radius:12px;font-weight:700;font-size:0.95em;transition:transform 0.2s,box-shadow 0.2s;}
+    .btn-appstore:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,255,255,0.15);}
+    .btn-appstore .sub{font-size:0.75em;font-weight:400;opacity:0.7;display:block;}
+    .btn-appstore .main-text{font-size:1em;display:block;margin-top:-2px;}
+    .btn-appstore svg{width:22px;height:22px;flex-shrink:0;}
+    .hero-badge{font-size:0.85em;color:var(--muted);}
+    .hero-phone{position:relative;display:flex;justify-content:center;}
+    .phone-mockup{width:280px;background:linear-gradient(160deg,#1e1030 0%,#2d0f3a 100%);border-radius:44px;padding:12px;box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.1),0 0 60px rgba(255,45,107,0.2);position:relative;}
+    .phone-screen{background:#0d0a1a;border-radius:34px;overflow:hidden;aspect-ratio:9/19;}
+    .phone-screen-inner{padding:20px 16px;display:flex;flex-direction:column;gap:12px;}
+    .phone-header{text-align:center;padding-top:8px;}
+    .phone-header .greeting{font-size:0.7em;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+    .phone-header .name{font-size:1.3em;font-weight:800;}
+    .phone-header .streak{font-size:0.65em;color:var(--pink);margin-top:4px;}
+    .char-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+    .char-card{background:linear-gradient(135deg,rgba(255,45,107,0.12),rgba(100,20,180,0.12));border:1px solid rgba(255,45,107,0.2);border-radius:12px;padding:10px;text-align:center;}
+    .char-avatar{width:40px;height:40px;background:linear-gradient(135deg,#3d1060,#ff2d6b);border-radius:50%;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+    .char-name{font-size:0.65em;font-weight:700;}
+    .char-type{font-size:0.55em;color:var(--muted);}
+    .phone-glow{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);width:200px;height:40px;background:var(--pink);filter:blur(30px);opacity:0.3;}
+
+    /* HOW IT WORKS */
+    .section{padding:100px 5%;}
+    .section-inner{max-width:1100px;margin:0 auto;}
+    .section-label{font-size:0.8em;font-weight:700;color:var(--pink);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;}
+    .section-title{font-size:clamp(1.8em,3.5vw,2.8em);font-weight:900;letter-spacing:-0.5px;margin-bottom:16px;}
+    .section-sub{font-size:1.05em;color:var(--muted);max-width:560px;}
+    .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px;}
+    .step-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px 28px;}
+    .step-num{width:40px;height:40px;background:linear-gradient(135deg,var(--plum),var(--pink));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1em;margin-bottom:20px;}
+    .step-card h3{font-size:1.15em;font-weight:800;margin-bottom:10px;}
+    .step-card p{font-size:0.92em;color:var(--muted);line-height:1.6;}
+
+    /* FEATURES */
+    .features-bg{background:var(--bg2);}
+    .feature-row{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:100px;}
+    .feature-row:last-child{margin-bottom:0;}
+    .feature-row.reverse{direction:rtl;}
+    .feature-row.reverse>*{direction:ltr;}
+    .feature-text .tag{display:inline-block;background:rgba(255,45,107,0.1);border:1px solid rgba(255,45,107,0.3);color:var(--pink);font-size:0.78em;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:0.5px;}
+    .feature-text h2{font-size:clamp(1.5em,2.8vw,2.2em);font-weight:900;letter-spacing:-0.5px;margin-bottom:14px;line-height:1.2;}
+    .feature-text p{font-size:1em;color:var(--muted);line-height:1.7;margin-bottom:20px;}
+    .feature-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;}
+    .feature-bullets li{display:flex;align-items:center;gap:10px;font-size:0.95em;color:var(--muted);}
+    .feature-bullets li::before{content:'✓';color:var(--pink);font-weight:800;flex-shrink:0;}
+    .feature-visual{background:linear-gradient(135deg,rgba(255,45,107,0.08),rgba(100,20,180,0.08));border:1px solid var(--border);border-radius:24px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:4em;}
+
+    /* FAQ */
+    .faq-list{display:flex;flex-direction:column;gap:16px;margin-top:48px;max-width:760px;}
+    .faq-item{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 28px;}
+    .faq-item h3{font-size:1.05em;font-weight:700;margin-bottom:10px;}
+    .faq-item p{font-size:0.95em;color:var(--muted);line-height:1.65;}
+    .faq-item p a{color:var(--pink);}
+
+    /* CTA */
+    .cta-section{padding:80px 5%;}
+    .cta-inner{max-width:1100px;margin:0 auto;}
+    .cta-box{background:linear-gradient(135deg,#3d0f6e 0%,#8b1a4a 50%,#c4183c 100%);border-radius:28px;padding:70px 60px;text-align:center;}
+    .cta-box h2{font-size:clamp(1.8em,3.5vw,2.8em);font-weight:900;letter-spacing:-0.5px;margin-bottom:14px;}
+    .cta-box p{font-size:1.05em;color:rgba(255,255,255,0.8);margin-bottom:36px;}
+
+    /* FOOTER */
+    footer{padding:32px 5%;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+    .footer-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:0.95em;}
+    .footer-copy{font-size:0.85em;color:var(--muted);}
+    .footer-links{display:flex;gap:24px;font-size:0.88em;color:var(--muted);}
+    .footer-links a:hover{color:#fff;}
+
+    @media(max-width:768px){
+      .hero-inner,.steps-grid,.feature-row{grid-template-columns:1fr;}
+      .hero-phone{display:none;}
+      .feature-row.reverse{direction:ltr;}
+      .cta-box{padding:40px 24px;}
+      footer{flex-direction:column;text-align:center;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">✦</div>
+    Charm AI
+  </div>
+  <div class="nav-links">
+    <a href="#how-it-works">How it works</a>
+    <a href="#features">Features</a>
+    <a href="#faq">FAQ</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms-of-service.html">Terms</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>Practice real<br>conversations.<br><span class="accent">Start your flirt era.</span></h1>
+      <p>AI-powered conversation coaching built for women who want real confidence — not just compliments. Practice, improve, and charm.</p>
+      <div class="hero-cta">
+        <a href="#" class="btn-appstore">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div>
+            <span class="sub">Download on the</span>
+            <span class="main-text">App Store</span>
+          </div>
+        </a>
+        <span class="hero-badge">Free to download. Optional premium.</span>
+      </div>
+    </div>
+    <div class="hero-phone">
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="phone-screen-inner">
+            <div class="phone-header">
+              <div class="greeting">Good evening</div>
+              <div class="name">SOPHIE ✦</div>
+              <div class="streak">3 day streak 🔥</div>
+            </div>
+            <div class="char-grid">
+              <div class="char-card">
+                <div class="char-avatar">😎</div>
+                <div class="char-name">Leo</div>
+                <div class="char-type">The charmer</div>
+              </div>
+              <div class="char-card">
+                <div class="char-avatar">🎯</div>
+                <div class="char-name">Kai</div>
+                <div class="char-type">The direct one</div>
+              </div>
+              <div class="char-card">
+                <div class="char-avatar">📚</div>
+                <div class="char-name">Marcus</div>
+                <div class="char-type">The intellectual</div>
+              </div>
+              <div class="char-card" style="background:rgba(255,45,107,0.08);border-color:rgba(255,45,107,0.4);">
+                <div class="char-avatar" style="background:linear-gradient(135deg,#ff2d6b,#ff6b9d);">🔒</div>
+                <div class="char-name" style="color:var(--pink)">PRO</div>
+                <div class="char-type">3 more</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-glow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="section-inner">
+    <div class="section-label">How it works</div>
+    <div class="section-title">Three steps to becoming magnetic</div>
+    <div class="section-sub">No cringe scripts. No pickup lines. Just genuine confidence built through practice.</div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Pick a character</h3>
+        <p>Choose from 6 AI characters, each with a unique personality and conversation style. From the charmer to the intellectual.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Practice for real</h3>
+        <p>Have natural back-and-forth conversations. Characters react authentically to what you say — charm them, bore them, or make them laugh.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Get your Charm Report</h3>
+        <p>End every session with a personalized breakdown of your confidence, wit, and connection. Track your glow-up over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section features-bg" id="features">
+  <div class="section-inner">
+    <div class="feature-row">
+      <div class="feature-text">
+        <span class="tag">AI Characters</span>
+        <h2>Practice with 6 unique AI personalities</h2>
+        <p>Every character has a distinct vibe, texting style, and emotional range. Practice the conversations you actually want to have.</p>
+        <ul class="feature-bullets">
+          <li>6 characters with unique personalities</li>
+          <li>Realistic, unpredictable responses</li>
+          <li>4 exclusive PRO characters</li>
+          <li>New characters added regularly</li>
+        </ul>
+      </div>
+      <div class="feature-visual">💬</div>
+    </div>
+    <div class="feature-row reverse">
+      <div class="feature-text">
+        <span class="tag">Charm Reports</span>
+        <h2>Real feedback after every session</h2>
+        <p>Stop guessing what went wrong. Get scored on confidence, wit, and connection — so you know exactly where you're glowing up.</p>
+        <ul class="feature-bullets">
+          <li>Confidence, wit &amp; connection scores</li>
+          <li>Personalized coaching insights</li>
+          <li>Session history &amp; streak tracking</li>
+          <li>Share your best scores</li>
+        </ul>
+      </div>
+      <div class="feature-visual">✨</div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-text">
+        <span class="tag">Daily Practice</span>
+        <h2>Build real confidence, session by session</h2>
+        <p>2 free sessions per day to keep you consistent. Upgrade to Pro for unlimited practice and watch your confidence compound.</p>
+        <ul class="feature-bullets">
+          <li>Daily practice streaks</li>
+          <li>Optional reminders to keep momentum</li>
+          <li>Unlimited sessions with Pro</li>
+          <li>No judgment. Just growth.</li>
+        </ul>
+      </div>
+      <div class="feature-visual">🔥</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-inner">
+    <div class="section-label">FAQ</div>
+    <div class="section-title">Frequently asked questions</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Is Charm AI free?</h3>
+        <p>Yes, the core app is free to download and use. You get 2 practice sessions per day on the free tier. Charm AI Pro unlocks unlimited sessions, all 6 characters, and priority features.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Who is Charm AI for?</h3>
+        <p>Charm AI is built for women who want to feel more confident and magnetic in real conversations and dating situations. It's a practice tool, not a dating app.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Are the AI characters real people?</h3>
+        <p>No. All AI characters in Charm AI are entirely fictional. They are designed for entertainment and practice purposes only and do not represent real individuals.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How much does Charm AI Pro cost?</h3>
+        <p>Charm AI Pro is available for $49.99/year. You can cancel anytime through your Apple ID subscription settings.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is my data safe?</h3>
+        <p>Yes. We do not sell your personal information. Conversation data is processed in real-time and not stored permanently. See our <a href="privacy-policy.html">Privacy Policy</a> for full details.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-box">
+      <h2>Ready to start your flirt era?</h2>
+      <p>Download Charm AI and start practicing today. It's free.</p>
+      <a href="#" class="btn-appstore" style="display:inline-flex;">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div>
+          <span class="sub">Download on the</span>
+          <span class="main-text">App Store</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="nav-logo-icon" style="width:28px;height:28px;font-size:14px;">✦</div>
+    <span>Charm AI</span>
+    <span class="footer-copy">&copy; 2026 Charm AI. All rights reserved.</span>
+  </div>
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms-of-service.html">Terms</a>
+    <a href="mailto:support@charm-ai.app">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
